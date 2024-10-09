@@ -1,0 +1,21 @@
+#minitouch安装
+
+#jdk
+apt-cache search openjdk 
+sudo apt install openjdk-17-jre-headless
+
+#clone
+#https://github.com/DeviceFarmer/STFService.apk#building
+git clone https://github.com/DeviceFarmer/STFService.apk.git
+#assemble
+./gradlew assembleDebug
+#install
+./gradlew installDebug
+
+#start server(每次启动都需要)
+adb root
+开启STFService自启动权限和其他保活权限
+adb shell am startservice --user 0  -a jp.co.cyberagent.stf.ACTION_START  -n jp.co.cyberagent.stf/.Service
+
+#意外未stop service
+adb kill-server
